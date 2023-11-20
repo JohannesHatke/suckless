@@ -5,6 +5,8 @@ static const char *increase_volume[] = {"/home/johannes/Programs/scripts/audio/i
 static const char *decrease_volume[] = {"/home/johannes/Programs/scripts/audio/decrease_current",NULL};
 static const char *choose_audio_output[] = {"/home/johannes/Programs/scripts/audio/choose_output",NULL};
 static const char *mute_audio_output[] = {"/home/johannes/Programs/scripts/audio/mute_current",NULL};
+static const char *screenshot[] = {"flameshot", "gui",NULL};
+static const char *vpn_toggle[] = {"/home/johannes/Programs/scripts/mullvad_connect", NULL};
 
 /* appearance */
 static const unsigned int borderpx  = 2;        /* border pixel of windows */
@@ -12,21 +14,30 @@ static const unsigned int snap      = 32;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */ 
 static const int topbar             = 1;        /* 0 means bottom bar */
 static const unsigned int gappx     = 2;        /* gap pixel between windows */
-static const char *fonts[]          = { "Ubuntu mono:size=10" };
-static const char dmenufont[]       = "Ubuntu mono:size=10";
+static const char *fonts[]          = { "Hack:size=10", "Hack Nerd Font Mono:size=18:antialias=true:autohint=true" };
+static const char dmenufont[]       = "Ubuntu mono:size=10"; /* Ubuntu mono */
 static const char col_gray1[]       = "#222222";
 static const char col_gray2[]       = "#444444";
 static const char col_gray3[]       = "#bbbbbb";
 static const char col_gray4[]       = "#eeeeee";
 static const char col_cyan[]        = "#ee3c3a";
+static const char col_black[]       = "#000000";
+static const char col_red[]         = "#ff0000";
+static const char col_yellow[]      = "#ffff00";
+static const char col_white[]       = "#ffffff";
+static const char col_green[]       = "#08c74b";
+
 static const char *colors[][3]      = {
-	/*               fg         bg         border   */
-	[SchemeNorm] = { col_gray3, col_gray1, col_gray2 },
-	[SchemeSel]  = { col_gray4, col_cyan,  col_cyan  },
-};
+		/*		fg         bg          border   */
+	[SchemeNorm] =	 { col_gray3,	col_gray1,	col_gray2 },
+	[SchemeSel]  =	 { col_gray4,	col_cyan,	col_cyan },
+	[SchemeWarn] =	 { col_yellow,	col_gray1,	col_red },
+	[SchemeUrgent]=	 { col_red,	col_gray1,	col_gray2 },
+	[SchemeOk]=	 { col_green,	col_gray1,	col_gray2 },
+ };
 
 /* tagging */
-static const char *tags[] = { "1", "2", "3", "4", "5", "M", "7", "8", "9" };
+static const char *tags[] = { "1", "2", "3", "4", "5", "", "7", "8", "󰈹" };
 
 static const Rule rules[] = {
 	/* xprop(1):
@@ -107,7 +118,9 @@ static const Key keys[] = {
 	{ 0, XF86XK_AudioRaiseVolume, spawn, {.v = increase_volume} }, 
 	{ 0, XF86XK_AudioLowerVolume, spawn, {.v = decrease_volume} }, 
 	{ 0, XF86XK_AudioMute, spawn, {.v = mute_audio_output} }, 
+	{ 0, XK_Print, spawn, {.v = screenshot} }, 
 	{ MODKEY , XK_o, spawn, {.v = choose_audio_output} }, 
+	{ MODKEY,	             XK_v, spawn,         {.v = vpn_toggle } },
 };
 /* button definitions */
 /* click can be ClkTagBar, ClkLtSymbol, ClkStatusText, ClkWinTitle, ClkClientWin, or ClkRootWin */
