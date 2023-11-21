@@ -4,15 +4,24 @@
 
 
 #define	TIMER_FILE "/home/johannes/Programs/statusTimer/control.sh"
-
-static const char *increase_volume[] = {"/home/johannes/Programs/scripts/audio/increase_current",NULL};
-static const char *decrease_volume[] = {"/home/johannes/Programs/scripts/audio/decrease_current",NULL};
-static const char *choose_audio_output[] = {"/home/johannes/Programs/scripts/audio/choose_output",NULL};
-static const char *mute_audio_output[] = {"/home/johannes/Programs/scripts/audio/mute_current",NULL};
+#define	SCRIPT_FOLDER "/home/johannes/Programs/scripts"
 static const char *screenshot[] = {"flameshot", "gui",NULL};
-static const char *vpn_toggle[] = {"/home/johannes/Programs/scripts/vpn/mullvad_connect", NULL};
-static const char *docking_display[] = {"/home/johannes/Programs/scripts/docking_display", NULL};
+
+
+#ifdef TIMER_FILE
 static const char *timer_control[] = {TIMER_FILE, NULL};
+#else
+static const char *timer_control[] = {"echo","timer not found", NULL};
+#endif
+
+
+
+static const char *increase_volume[] = {SCRIPT_FOLDER"/audio/increase_current",NULL};
+static const char *decrease_volume[] = {SCRIPT_FOLDER"/audio/decrease_current",NULL};
+static const char *choose_audio_output[] = {SCRIPT_FOLDER"/audio/choose_output",NULL};
+static const char *mute_audio_output[] = {SCRIPT_FOLDER"/audio/mute_current",NULL};
+static const char *vpn_toggle[] = {SCRIPT_FOLDER"/vpn/mullvad_connect", NULL};
+static const char *docking_display[] = {SCRIPT_FOLDER"/docking_display", NULL};
 
 /* appearance */
 static const unsigned int borderpx  = 2;        /* border pixel of windows */

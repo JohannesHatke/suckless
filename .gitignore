@@ -1,0 +1,10 @@
+*.o
+
+dwm/dwm
+slstatus-1.0/sltatus
+st/st
+
+dmenu/dmenu
+dmenu/dmenu_path
+dmenu/dmenu_run
+dmenu/stest
