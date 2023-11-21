@@ -1,5 +1,5 @@
 /* See LICENSE file for copyright and license details. */
-#include <errno.h>
+#include <errno.h> 
 #include <signal.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -10,6 +10,9 @@
 #include "arg.h"
 #include "slstatus.h"
 #include "util.h"
+
+#include <sys/types.h>
+#include <unistd.h>
 
 struct arg {
 	const char *(*func)(const char *);
@@ -47,6 +50,15 @@ usage(void)
 int
 main(int argc, char *argv[])
 {
+	//storing the pid
+	FILE* pid_file = fopen(PID_FILE,"w");
+	pid_t own_pid = getpid();
+	fprintf(pid_file,"%ld",own_pid);
+	fclose(pid_file);
+
+
+
+	
 	struct sigaction act;
 	struct timespec start, current, diff, intspec, wait;
 	size_t i, len;

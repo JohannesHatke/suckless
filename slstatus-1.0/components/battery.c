@@ -46,7 +46,8 @@
 		if (pscanf(path, "%d", &cap_perc) != 1)
 			return NULL;
 
-		return bprintf("%d", cap_perc);
+		char *color = (cap_perc < 30) ? "\x04" :"\x01"; 
+		return bprintf("%s%d",color, cap_perc);
 	}
 
 	const char *
@@ -56,9 +57,9 @@
 			char *state;
 			char *symbol;
 		} map[] = {
-			{ "Charging",    "\x05+\x01" },
-			{ "Discharging", "-" },
-			{ "Full",        "o" },
+			{ "Charging",    "\x05+" },
+			{ "Discharging", " " },
+			{ "Full",        "\x05 " },
 			{ "Not charging", "o" },
 		};
 		size_t i;

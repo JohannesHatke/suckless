@@ -700,6 +700,32 @@ dirtomon(int dir)
 	return m;
 }
 
+int
+textw_wosc(char *s)
+{
+	char *ts = s;
+	char *tp = s;
+	int sw = 0;
+	char ctmp;
+	while (1) {
+		if ((unsigned int)*ts > LENGTH(colors)) {
+			ts++;
+			continue;
+		}
+		ctmp = *ts;
+		*ts = '\0';
+
+		sw += drw_fontset_getwidth(drw, tp);
+
+		*ts = ctmp;
+		if (ctmp == '\0')
+			break;
+		tp = ++ts;
+	}
+
+	return sw;
+}
+
 void
 drawbar(Monitor *m)
 {
@@ -713,13 +739,31 @@ drawbar(Monitor *m)
 	char ctmp;
 	Client *c;
 
+
+	
+	 
+	
+	/* correction for colours */
+	int correct = 0; 
+	char *xcape = malloc (sizeof (char) * 128);
+	memset(xcape,0,sizeof (char) * 128);
+	for ( ; *ts != '\0' ; ts++) {    
+	    if (*ts <= LENGTH(colors)) {
+	        sprintf(xcape,"%c",*ts);
+	        correct += TEXTW(xcape) - lrpad;
+	    }
+	}
+	free(xcape);
+	ts = stext;
+
+
 	if (!m->showbar)
 		return;
 
 	/* draw status first so it can be overdrawn by tags later */
 	if (m == selmon) { /* status is only drawn on selected monitor */
 		drw_setscheme(drw, scheme[SchemeNorm]);
-		tw = TEXTW(stext) - lrpad + 2; /* 2px right padding */
+		tw = TEXTW(stext) - lrpad + 2 - correct; /* 2px right padding and textw offset as defined in config.h*/ 
 		while (1) {
 			if ((unsigned int)*ts > LENGTH(colors)) { ts++; continue ; }
 			ctmp = *ts;

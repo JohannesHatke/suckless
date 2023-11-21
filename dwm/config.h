@@ -6,7 +6,7 @@ static const char *decrease_volume[] = {"/home/johannes/Programs/scripts/audio/d
 static const char *choose_audio_output[] = {"/home/johannes/Programs/scripts/audio/choose_output",NULL};
 static const char *mute_audio_output[] = {"/home/johannes/Programs/scripts/audio/mute_current",NULL};
 static const char *screenshot[] = {"flameshot", "gui",NULL};
-static const char *vpn_toggle[] = {"/home/johannes/Programs/scripts/mullvad_connect", NULL};
+static const char *vpn_toggle[] = {"/home/johannes/Programs/scripts/vpn/mullvad_connect", NULL};
 
 /* appearance */
 static const unsigned int borderpx  = 2;        /* border pixel of windows */
@@ -26,6 +26,7 @@ static const char col_red[]         = "#ff0000";
 static const char col_yellow[]      = "#ffff00";
 static const char col_white[]       = "#ffffff";
 static const char col_green[]       = "#08c74b";
+
 
 static const char *colors[][3]      = {
 		/*		fg         bg          border   */
