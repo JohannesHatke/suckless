@@ -8,12 +8,12 @@ static const char unknown_str[] = "n/a";
 
 #define PID_FILE "/home/johannes/Programs/scripts/slstatuspid"
 #define	VPN_STATUS_FILE "/home/johannes/Programs/scripts/vpn/status"
+#define	TIMER_FILE "/home/johannes/Programs/statusTimer/manage"
 
 /* maximum output string length */
 #define MAXLEN 2048
 
-/*
- * function            description                     argument (example)
+/* function            description                     argument (example)
  *
  * battery_perc        battery percentage              battery name (BAT0)
  *                                                     NULL on OpenBSD/FreeBSD
@@ -69,10 +69,11 @@ static const char unknown_str[] = "n/a";
 
 static const struct arg args[] = {
 	/* function format          argument */
-	{ ram_perc, "|%s %% 󱤘",			NULL },
-	{ cpu_perc, "|%s %% 󰍛",			NULL },
-	{ datetime, "|%s|",			"%d-%m-%G  %H:%M" },
-	{ battery_perc,"|%s ",			"BAT0"},
-	{ battery_state,"%s\x01",		"BAT0"},
-	{ cat,		"%s",			VPN_STATUS_FILE},
+	{ run_command,		"|%s|",			TIMER_FILE},
+	{ ram_perc,		"|%s %% 󱤘",		NULL },
+	{ cpu_perc,		"|%s %% 󰍛",		NULL },
+	{ datetime,		"|%s|",			"%d-%m-%G  %H:%M" },
+	{ battery_perc,		"|%s ",			"BAT0"},
+	{ battery_state,	"%s\x01",		"BAT0"},
+	{ cat,			"%s",			VPN_STATUS_FILE},
 };

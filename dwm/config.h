@@ -1,12 +1,18 @@
 /* See LICENSE file for copyright and license details. */
 
 /* custom commands */
+
+
+#define	TIMER_FILE "/home/johannes/Programs/statusTimer/control.sh"
+
 static const char *increase_volume[] = {"/home/johannes/Programs/scripts/audio/increase_current",NULL};
 static const char *decrease_volume[] = {"/home/johannes/Programs/scripts/audio/decrease_current",NULL};
 static const char *choose_audio_output[] = {"/home/johannes/Programs/scripts/audio/choose_output",NULL};
 static const char *mute_audio_output[] = {"/home/johannes/Programs/scripts/audio/mute_current",NULL};
 static const char *screenshot[] = {"flameshot", "gui",NULL};
 static const char *vpn_toggle[] = {"/home/johannes/Programs/scripts/vpn/mullvad_connect", NULL};
+static const char *docking_display[] = {"/home/johannes/Programs/scripts/docking_display", NULL};
+static const char *timer_control[] = {TIMER_FILE, NULL};
 
 /* appearance */
 static const unsigned int borderpx  = 2;        /* border pixel of windows */
@@ -116,6 +122,8 @@ static const Key keys[] = {
 	TAGKEYS(                        XK_9,                      8)
 	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
 	/* custom commands */
+	{ MODKEY|ShiftMask,             XK_t,      spawn,            {.v = timer_control } },
+	{ MODKEY|ShiftMask,             XK_d,      spawn,            {.v = docking_display } },
 	{ 0, XF86XK_AudioRaiseVolume, spawn, {.v = increase_volume} }, 
 	{ 0, XF86XK_AudioLowerVolume, spawn, {.v = decrease_volume} }, 
 	{ 0, XF86XK_AudioMute, spawn, {.v = mute_audio_output} }, 
