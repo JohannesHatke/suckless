@@ -70,8 +70,8 @@ static const char unknown_str[] = "n/a";
 static const struct arg args[] = {
 	/* function format          argument */
 	{ run_command,		"|%s|",			TIMER_FILE},
-	{ ram_perc,		"|%s %% 󱤘",		NULL },
-	{ cpu_perc,		"|%s %% 󰍛",		NULL },
+	{ ram_perc,		"|%3s %% 󱤘",		NULL },
+	{ cpu_perc,		"|%3s %% 󰍛",		NULL },
 	{ datetime,		"|%s|",			"%d-%m-%G  %H:%M" },
 	{ battery_perc,		"|%s ",			"BAT0"},
 	{ battery_state,	"%s\x01",		"BAT0"},
