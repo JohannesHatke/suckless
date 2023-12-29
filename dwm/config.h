@@ -24,18 +24,19 @@ static const char *vpn_toggle[] = {SCRIPT_FOLDER"/vpn/mullvad_connect", NULL};
 static const char *docking_display[] = {SCRIPT_FOLDER"/docking_display", NULL};
 
 /* appearance */
-static const unsigned int borderpx  = 2;        /* border pixel of windows */
-static const unsigned int snap      = 32;       /* snap pixel */
-static const int showbar            = 1;        /* 0 means no bar */ 
-static const int topbar             = 1;        /* 0 means bottom bar */
+static unsigned int borderpx  = 2;        /* border pixel of windows */
+static unsigned int snap      = 32;       /* snap pixel */
+static int showbar            = 1;        /* 0 means no bar */ 
+static int topbar             = 1;        /* 0 means bottom bar */
 static const unsigned int gappx     = 2;        /* gap pixel between windows */
 static const char *fonts[]          = { "Hack:size=10", "Hack Nerd Font Mono:size=18:antialias=true:autohint=true" };
 static const char dmenufont[]       = "Ubuntu mono:size=10"; /* Ubuntu mono */
-static const char col_gray1[]       = "#222222";
-static const char col_gray2[]       = "#444444";
-static const char col_gray3[]       = "#bbbbbb";
-static const char col_gray4[]       = "#eeeeee";
-static const char col_cyan[]        = "#ee3c3a";
+static char normbgcolor[]       = "#222222";
+static char normbordercolor[]       = "#444444";
+static char normfgcolor[]       = "#bbbbbb";
+static char selfgcolor[]       = "#eeeeee";
+static char selbordercolor[]        = "#ee3c3a";
+static char selbgcolor[]        = "#ee3c3a";
 static const char col_black[]       = "#000000";
 static const char col_red[]         = "#ff0000";
 static const char col_yellow[]      = "#ffff00";
@@ -45,11 +46,11 @@ static const char col_green[]       = "#08c74b";
 
 static const char *colors[][3]      = {
 		/*		fg         bg          border   */
-	[SchemeNorm] =	 { col_gray3,	col_gray1,	col_gray2 },
-	[SchemeSel]  =	 { col_gray4,	col_cyan,	col_cyan },
-	[SchemeWarn] =	 { col_yellow,	col_gray1,	col_red },
-	[SchemeUrgent]=	 { col_red,	col_gray1,	col_gray2 },
-	[SchemeOk]=	 { col_green,	col_gray1,	col_gray2 },
+	[SchemeNorm] =	 { normfgcolor,	normbgcolor,	normbordercolor },
+	[SchemeSel]  =	 { selfgcolor,	selbgcolor,	selbordercolor },
+	[SchemeWarn] =	 { col_yellow,	normbgcolor,	col_red },
+	[SchemeUrgent]=	 { col_red,	normbgcolor,	normbordercolor },
+	[SchemeOk]=	 { col_green,	normbgcolor,	normbordercolor },
  };
 
 /* tagging */
@@ -68,9 +69,9 @@ static const Rule rules[] = {
 };
 
 /* layout(s) */
-static const float mfact     = 0.55; /* factor of master area size [0.05..0.95] */
-static const int nmaster     = 1;    /* number of clients in master area */
-static const int resizehints = 1;    /* 1 means respect size hints in tiled resizals */
+static float mfact     = 0.55; /* factor of master area size [0.05..0.95] */
+static int nmaster     = 1;    /* number of clients in master area */
+static int resizehints = 1;    /* 1 means respect size hints in tiled resizals */
 static const int lockfullscreen = 1; /* 1 will force focus on the fullscreen window */
 
 static const Layout layouts[] = {
@@ -93,8 +94,27 @@ static const Layout layouts[] = {
 
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
-static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
+static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", normbgcolor, "-nf", normfgcolor, "-sb", selbordercolor, "-sf", selfgcolor, NULL };
 static const char *termcmd[]  = { "st", NULL };
+
+/*
+ * Xresources preferences to load at startup
+ */
+ResourcePref resources[] = {
+		{ "background",        STRING,  &normbgcolor },
+		{ "normbordercolor",    STRING,  &normbordercolor },  //color around unselected window
+		{ "foreground",        STRING,  &normfgcolor },
+		{ "selbgcolor",         STRING,  &selbgcolor }, // selection middle of bar and tab
+		{ "selbordercolor",     STRING,  &selbordercolor }, // selection border color
+		{ "selfgcolor",         STRING,  &selfgcolor },
+		{ "borderpx",          	INTEGER, &borderpx },
+		{ "snap",          		INTEGER, &snap },
+		{ "showbar",          	INTEGER, &showbar },
+		{ "topbar",          	INTEGER, &topbar },
+		{ "nmaster",          	INTEGER, &nmaster },
+		{ "resizehints",       	INTEGER, &resizehints },
+		{ "mfact",      	 	FLOAT,   &mfact },
+};
 
 static const Key keys[] = {
 	/* modifier                     key        function        argument */
