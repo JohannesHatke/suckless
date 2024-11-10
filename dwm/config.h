@@ -5,7 +5,7 @@
 
 #define	TIMER_FILE "/home/johannes/Programs/statusTimer/control.sh"
 #define	SCRIPT_FOLDER "/home/johannes/Programs/scripts"
-static const char *screenshot[] = {"flameshot", "gui",NULL};
+static const char *screenshot[] = {SCRIPT_FOLDER"/takeSCandCopy",NULL};
 
 
 #ifdef TIMER_FILE
@@ -22,6 +22,8 @@ static const char *choose_audio_output[] = {SCRIPT_FOLDER"/audio/choose_output",
 static const char *mute_audio_output[] = {SCRIPT_FOLDER"/audio/mute_current",NULL};
 static const char *vpn_toggle[] = {SCRIPT_FOLDER"/vpn/mullvad_connect", NULL};
 static const char *docking_display[] = {SCRIPT_FOLDER"/docking_display", NULL};
+static const char *launch_ranger[] = {"st","-e","ranger",NULL };
+static const char *power_script[] = {SCRIPT_FOLDER"/power", NULL};
 
 /* appearance */
 static unsigned int borderpx  = 2;        /* border pixel of windows */
@@ -37,20 +39,32 @@ static char normfgcolor[]       = "#bbbbbb";
 static char selfgcolor[]       = "#eeeeee";
 static char selbordercolor[]        = "#ee3c3a";
 static char selbgcolor[]        = "#ee3c3a";
-static const char col_black[]       = "#000000";
-static const char col_red[]         = "#ff0000";
-static const char col_yellow[]      = "#ffff00";
-static const char col_white[]       = "#ffffff";
-static const char col_green[]       = "#08c74b";
+static char col00[]       = "#000000";
+static char col01[]       = "#ff0000";
+static char col02[]       = "#08c74b";
+static char col03[]       = "#ffff00";
+static char col04[]       = "#08c74b";
+static char col05[]       = "#08c74b";
+static char col06[]       = "#08c74b";
+static char col07[]       = "#ffffff";
+static char col08[]       = "#08c74b";
+static char col09[]       = "#08c74b";
+static char col10[]       = "#08c74b";
+static char col11[]       = "#08c74b";
+static char col12[]       = "#08c74b";
+static char col13[]       = "#08c74b";
+static char col14[]       = "#08c74b";
+static char col15[]       = "#08c74b";
+
 
 
 static const char *colors[][3]      = {
 		/*		fg         bg          border   */
 	[SchemeNorm] =	 { normfgcolor,	normbgcolor,	normbordercolor },
 	[SchemeSel]  =	 { selfgcolor,	selbgcolor,	selbordercolor },
-	[SchemeWarn] =	 { col_yellow,	normbgcolor,	col_red },
-	[SchemeUrgent]=	 { col_red,	normbgcolor,	normbordercolor },
-	[SchemeOk]=	 { col_green,	normbgcolor,	normbordercolor },
+	[SchemeWarn] =	 { col03,	normbgcolor,	col01 },
+	[SchemeUrgent]=	 { col01,	normbgcolor,	normbordercolor },
+	[SchemeOk]=	 { col02,	normbgcolor,	normbordercolor },
  };
 
 /* tagging */
@@ -94,7 +108,7 @@ static const Layout layouts[] = {
 
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
-static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", normbgcolor, "-nf", normfgcolor, "-sb", selbordercolor, "-sf", selfgcolor, NULL };
+static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", normbgcolor, "-nf", normfgcolor, "-sb", normbgcolor, "-sf", selfgcolor, NULL };
 static const char *termcmd[]  = { "st", NULL };
 
 /*
@@ -114,6 +128,23 @@ ResourcePref resources[] = {
 		{ "nmaster",          	INTEGER, &nmaster },
 		{ "resizehints",       	INTEGER, &resizehints },
 		{ "mfact",      	 	FLOAT,   &mfact },
+
+		{ "color0",      	 	STRING,   &col00 },
+		{ "color1",      	 	STRING,   &col01 },
+		{ "color2",      	 	STRING,   &col02 },
+		{ "color3",      	 	STRING,   &col03 },
+		{ "color4",      	 	STRING,   &col04 },
+		{ "color5",      	 	STRING,   &col05 },
+		{ "color6",      	 	STRING,   &col06 },
+		{ "color7",      	 	STRING,   &col07 },
+		{ "color8",      	 	STRING,   &col08 },
+		{ "color9",      	 	STRING,   &col09 },
+		{ "color10",      	 	STRING,   &col10 },
+		{ "color11",      	 	STRING,   &col11 },
+		{ "color12",      	 	STRING,   &col12 },
+		{ "color13",      	 	STRING,   &col13 },
+		{ "color14",      	 	STRING,   &col14 },
+		{ "color15",      	 	STRING,   &col15 },
 };
 
 static const Key keys[] = {
@@ -152,6 +183,7 @@ static const Key keys[] = {
 	TAGKEYS(                        XK_9,                      8)
 	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
 	/* custom commands */
+	{ MODKEY|ShiftMask,             XK_s,      spawn,            {.v = power_script } },
 	{ MODKEY|ShiftMask,             XK_t,      spawn,            {.v = timer_control } },
 	{ MODKEY|ShiftMask,             XK_d,      spawn,            {.v = docking_display } },
 	{ 0, XF86XK_AudioRaiseVolume, spawn, {.v = increase_volume} }, 
@@ -160,6 +192,8 @@ static const Key keys[] = {
 	{ 0, XK_Print, spawn, {.v = screenshot} }, 
 	{ MODKEY , XK_o, spawn, {.v = choose_audio_output} }, 
 	{ MODKEY,	             XK_v, spawn,         {.v = vpn_toggle } },
+	{ Mod1Mask,	             XK_F4, killclient,     {0} }, //alt f4
+	{ MODKEY,	             XK_n, spawn,     {.v = launch_ranger} }, 
 };
 /* button definitions */
 /* click can be ClkTagBar, ClkLtSymbol, ClkStatusText, ClkWinTitle, ClkClientWin, or ClkRootWin */
