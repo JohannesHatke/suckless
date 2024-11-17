@@ -4,7 +4,7 @@
 
 
 #define	TIMER_FILE "/home/johannes/Programs/statusTimer/control.sh"
-#define	SCRIPT_FOLDER "/home/johannes/Programs/scripts"
+#define	SCRIPT_FOLDER "/home/johannes/Programs/GCAL-logger/control.sh"
 static const char *screenshot[] = {"flameshot", "gui",NULL};
 
 

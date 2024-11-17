@@ -8,7 +8,7 @@ static const char unknown_str[] = "n/a";
 
 #define PID_FILE "/home/johannes/Programs/scripts/slstatuspid"
 #define	VPN_STATUS_FILE "/home/johannes/Programs/scripts/vpn/status"
-#define	TIMER_FILE "/home/johannes/Programs/statusTimer/manage"
+#define	TIMER_FILE "/home/johannes/Programs/GCAL-logger/run"
 
 /* maximum output string length */
 #define MAXLEN 2048

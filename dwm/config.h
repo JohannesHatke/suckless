@@ -3,7 +3,7 @@
 /* custom commands */
 
 
-#define	TIMER_FILE "/home/johannes/Programs/statusTimer/control.sh"
+#define	TIMER_FILE "/home/johannes/Programs/GCAL-logger/src/control.sh"
 #define	SCRIPT_FOLDER "/home/johannes/Programs/scripts"
 static const char *screenshot[] = {SCRIPT_FOLDER"/takeSCandCopy",NULL};
 
