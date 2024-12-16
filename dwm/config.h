@@ -82,6 +82,8 @@ static const Rule rules[] = {
 	{ "Firefox",  NULL,       NULL,       1 << 8,       0,           -1 },
 	{ "thunderbird",  NULL,	  NULL,       1 << 5,       0,           -1 },
 	{ "Zathura",  NULL,	  NULL,       1 << 2,       0,           -1 },
+	{ "St",     "st",       NULL,       0,            0,           -1 },
+	{ "St",     "launcher",       NULL,       0,            1,           -1 },
 };
 
 /* layout(s) */
