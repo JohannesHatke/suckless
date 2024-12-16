@@ -26,6 +26,8 @@ static const char *docking_display[] = {SCRIPT_FOLDER"/docking_display", NULL};
 static const char *launch_ranger[] = {"st","-e","ranger", NULL };
 static const char *launch_ranger_studium[] = {"st","-e","ranger ", STUDIUM_FOLDER ,   NULL };
 static const char *power_script[] = {SCRIPT_FOLDER"/power", NULL};
+static const char *file_launcher[] = {SCRIPT_FOLDER"/fzf-launcher/launch.sh", NULL};
+static const char *file_launcher_studium[] = {SCRIPT_FOLDER"/fzf-launcher/launch.sh", STUDIUM_FOLDER , NULL};
 
 /* appearance */
 static unsigned int borderpx  = 2;        /* border pixel of windows */
@@ -194,7 +196,9 @@ static const Key keys[] = {
 	{ 0, XF86XK_AudioLowerVolume, spawn, {.v = decrease_volume} }, 
 	{ 0, XF86XK_AudioMute, spawn, {.v = mute_audio_output} }, 
 	{ 0, XK_Print, spawn, {.v = screenshot} }, 
-	{ MODKEY , XK_o, spawn, {.v = choose_audio_output} }, 
+	{ MODKEY , XK_a, spawn, {.v = choose_audio_output} }, 
+	{ MODKEY , XK_o, spawn, {.v = file_launcher} }, 
+	{ MODKEY , XK_l, spawn, {.v = file_launcher_studium} }, 
 	{ MODKEY,	             XK_v, spawn,         {.v = vpn_toggle } },
 	{ Mod1Mask,	             XK_F4, killclient,     {0} }, //alt f4
 	{ MODKEY,	             XK_n, spawn,     {.v = launch_ranger} }, 
