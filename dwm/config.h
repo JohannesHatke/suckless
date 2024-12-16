@@ -5,6 +5,7 @@
 
 #define	TIMER_FILE "/home/johannes/Programs/GCAL-logger/src/control.sh"
 #define	SCRIPT_FOLDER "/home/johannes/Programs/scripts"
+#define	STUDIUM_FOLDER "/home/johannes/Studium"
 static const char *screenshot[] = {SCRIPT_FOLDER"/takeSCandCopy",NULL};
 
 
@@ -22,7 +23,8 @@ static const char *choose_audio_output[] = {SCRIPT_FOLDER"/audio/choose_output",
 static const char *mute_audio_output[] = {SCRIPT_FOLDER"/audio/mute_current",NULL};
 static const char *vpn_toggle[] = {SCRIPT_FOLDER"/vpn/mullvad_connect", NULL};
 static const char *docking_display[] = {SCRIPT_FOLDER"/docking_display", NULL};
-static const char *launch_ranger[] = {"st","-e","ranger",NULL };
+static const char *launch_ranger[] = {"st","-e","ranger", NULL };
+static const char *launch_ranger_studium[] = {"st","-e","ranger ", STUDIUM_FOLDER ,   NULL };
 static const char *power_script[] = {SCRIPT_FOLDER"/power", NULL};
 
 /* appearance */
