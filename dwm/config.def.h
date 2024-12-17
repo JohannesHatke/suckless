@@ -3,6 +3,7 @@
 /* custom commands */
 
 
+#include <X11/X.h>
 #define	TIMER_FILE "/home/johannes/Programs/GCAL-logger/src/control.sh"
 #define	SCRIPT_FOLDER "/home/johannes/Programs/scripts"
 #define	STUDIUM_FOLDER "/home/johannes/Studium"
@@ -198,7 +199,7 @@ static const Key keys[] = {
 	{ 0, XK_Print, spawn, {.v = screenshot} }, 
 	{ MODKEY , XK_a, spawn, {.v = choose_audio_output} }, 
 	{ MODKEY , XK_o, spawn, {.v = file_launcher} }, 
-	{ MODKEY , XK_l, spawn, {.v = file_launcher_studium} }, 
+	{ MODKEY |ShiftMask , XK_o, spawn, {.v = file_launcher_studium} }, 
 	{ MODKEY,	             XK_v, spawn,         {.v = vpn_toggle } },
 	{ Mod1Mask,	             XK_F4, killclient,     {0} }, //alt f4
 	{ MODKEY,	             XK_n, spawn,     {.v = launch_ranger} }, 
